@@ -1,109 +1,140 @@
 import React, { useState } from "react";
-import { Button, Navbar, Nav, Offcanvas, Container } from "react-bootstrap";
+import { Button, Navbar, Nav, Offcanvas } from "react-bootstrap";
 import "./Layout.css";
-import logo from "/img/logo-white.png";
+import logo from "/img/favico-logo_movile-white.png";
 import { Link, Outlet } from "react-router-dom";
 
 const Layout = () => {
-  const [show, setShow] = useState(false); // State for showing offcanvas
+  const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   return (
     <>
-      {/* Top Navbar with Hamburger for Mobile */}
-      <Navbar bg="black" variant="dark" sticky="top">
-        <Button
-          variant="outline-dark"
-          onClick={handleShow}
-          className="d-md-none"
+      <div className="layout-container container-fluid">
+        <div className="row no-gutters vh-100">
+          <div className="d-none d-md-block col-md-3 col-lg-2 p-0">
+            <div className="sidebar bg-dark h-100 position-fixed top-0 start-0">
+              <div className="layout-offcanvas-header d-flex align-items-center">
+                {/* <Link to={"/"}>
+                  <img src={logo} alt="homedeluxe logo" />
+                </Link> */}
+              </div>
+              <Nav className="flex-column">
+                <Nav.Item>
+                  <Link to="/admin" className="nav-link">
+                    <i className="bi bi-house-door me-2 fs-4"></i>Dashboard
+                  </Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Link to="/admin/admin" className="nav-link">
+                    <i class="bi bi-person-gear me-2 fs-4"></i>Admin
+                  </Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Link to="/admin/users" className="nav-link">
+                    <i className="bi bi-people me-2 fs-4"></i>Users
+                  </Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Link to="/admin/products" className="nav-link">
+                    <i className="bi bi-bag me-2 fs-4"></i>Products
+                  </Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Link to="/admin/orders" className="nav-link">
+                    <i className="bi bi-cart me-2 fs-4"></i>Orders
+                  </Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Link to="/admin/categories" className="nav-link">
+                    <i className="bi bi-tag me-2 fs-4"></i>Categories
+                  </Link>
+                </Nav.Item>
+              </Nav>
+            </div>
+          </div>
+          <div className="col-12 col-md-9 col-lg-10 bg-light px-0">
+            <Navbar
+              bg="dark"
+              variant="dark"
+              sticky="top"
+              className="pe-3 px-md-3"
+            >
+              <div className=" d-flex justify-content-start gap-3">
+                <Button
+                  onClick={handleShow}
+                  className="d-md-none bg-transparent border-0 mx-3"
+                >
+                  &#9776;
+                </Button>
+              </div>
+              <div className="d-flex flex-grow-1 justify-content-between align-items-center">
+                <Navbar.Brand
+                  as={Link}
+                  to={"/admin"}
+                  className="text-uppercase layout-nav-title"
+                >
+                  Administration Panel
+                </Navbar.Brand>
+                <img
+                  src="/img/logo-white.png"
+                  alt="User Avatar"
+                  className="layout-avatar"
+                />
+              </div>
+            </Navbar>
+            <div className="content vh-100 bg-success">
+              <Outlet />
+            </div>
+          </div>
+        </div>
+        <Offcanvas
+          show={show}
+          onHide={handleClose}
+          placement="start"
+          data-bs-theme="dark"
         >
-          &#9776; {/* Hamburger icon */}
-        </Button>
-        <Navbar.Brand href="#">My App</Navbar.Brand>
-      </Navbar>
-
-      {/* Sidebar for Desktop */}
-      <div className="sidebar d-none d-md-block">
-        <Nav className="flex-column">
-          <Nav.Item>
-            <Link to="/admin" className="nav-link">
-              Dashboard
-            </Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Link to="/admin/admin" className="nav-link">
-              Admin
-            </Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Link to="/admin/users" className="nav-link">
-              Users
-            </Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Link to="/admin/products" className="nav-link">
-              Products
-            </Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Link to="/admin/orders" className="nav-link">
-              Orders
-            </Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Link to="/admin/categories" className="nav-link">
-              Categories
-            </Link>
-          </Nav.Item>
-        </Nav>
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Menu</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Nav className="flex-column">
+              <Nav.Item>
+                <Link to="/admin" className="nav-link">
+                  Dashboard
+                </Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Link to="/admin/admin" className="nav-link">
+                  Admin
+                </Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Link to="/admin/users" className="nav-link">
+                  Users
+                </Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Link to="/admin/products" className="nav-link">
+                  Products
+                </Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Link to="/admin/orders" className="nav-link">
+                  Orders
+                </Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Link to="/admin/categories" className="nav-link">
+                  Categories
+                </Link>
+              </Nav.Item>
+            </Nav>
+          </Offcanvas.Body>
+        </Offcanvas>
       </div>
-
-      <Offcanvas show={show} onHide={handleClose} placement="start">
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Menu</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          <Nav className="flex-column">
-            <Nav.Item>
-              <Link to="/admin" className="nav-link">
-                Dashboard
-              </Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Link to="/admin/admin" className="nav-link">
-                Admin
-              </Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Link to="/admin/users" className="nav-link">
-                Users
-              </Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Link to="/admin/products" className="nav-link">
-                Products
-              </Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Link to="/admin/orders" className="nav-link">
-                Orders
-              </Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Link to="/admin/categories" className="nav-link">
-                Categories
-              </Link>
-            </Nav.Item>
-          </Nav>
-        </Offcanvas.Body>
-      </Offcanvas>
-
-      {/* Main Content */}
-      <Container fluid className="content">
-        <Outlet />
-      </Container>
     </>
   );
 };

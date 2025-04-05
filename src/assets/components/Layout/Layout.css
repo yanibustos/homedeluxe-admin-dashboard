@@ -1,24 +1,27 @@
-.layout-container {
-  .layout-offcanvas {
-    width: 250px;
-    background-color: #1f2937;
-    min-height: 100vh;
-  }
-
-  .layout-offcanvas img {
-    object-fit: cover;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
-/* Sidebar CSS */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 250px;
-  background-color: #000000;
-  padding-top: 60px;
-  padding-right: 10px;
+
+.layout-container {
+  width: 100%;
+}
+
+.layout-nav-title {
+  font-size: 16px;
+}
+
+.layout-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #666666;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.layout-offcanvas-header {
+  height: 56px;
 }
 
 .sidebar a {
@@ -34,19 +37,13 @@
   color: #ffffff;
 }
 
-/* On mobile, hide the sidebar and use Offcanvas */
+.content {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 @media (max-width: 768px) {
   .sidebar {
     display: none;
   }
-}
-
-/* Ensure the content doesn't hide behind the fixed sidebar */
-.content {
-  margin-left: 250px;
-}
-
-/* Ensure offcanvas doesn't overlap the navbar */
-.offcanvas-body {
-  padding-top: 50px;
 }
