@@ -1,0 +1,52 @@
+.layout-container {
+  .layout-offcanvas {
+    width: 250px;
+    background-color: #1f2937;
+    min-height: 100vh;
+  }
+
+  .layout-offcanvas img {
+    object-fit: cover;
+  }
+}
+/* Sidebar CSS */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: #000000;
+  padding-top: 60px;
+  padding-right: 10px;
+}
+
+.sidebar a {
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #ffffff;
+}
+
+/* On mobile, hide the sidebar and use Offcanvas */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+/* Ensure the content doesn't hide behind the fixed sidebar */
+.content {
+  margin-left: 250px;
+}
+
+/* Ensure offcanvas doesn't overlap the navbar */
+.offcanvas-body {
+  padding-top: 50px;
+}
