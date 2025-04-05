@@ -7,7 +7,6 @@ import Admin from "./src/assets/pages/Admin/Admin";
 import Products from "./src/assets/pages/Products/Products";
 import Orders from "./src/assets/pages/Orders/Orders";
 import Categories from "./src/assets/pages/Categories/Categories";
-import Roles from "./src/assets/pages/Roles/Roles";
 import NotFound from "./src/assets/pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
@@ -25,7 +24,6 @@ const router = createBrowserRouter([
           { path: "products", element: <Products /> },
           { path: "orders", element: <Orders /> },
           { path: "categories", element: <Categories /> },
-          { path: "roles", element: <Roles /> },
         ],
       },
     ],
