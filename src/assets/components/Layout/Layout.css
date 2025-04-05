@@ -24,26 +24,56 @@ body {
   height: 56px;
 }
 
-.sidebar a {
-  padding: 10px 20px;
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+}
+
+.sidebar a,
+.offcanvas a {
   text-decoration: none;
-  font-size: 20px;
-  color: #818181;
+  color: #ffffff;
   display: block;
   transition: 0.3s;
 }
 
-.sidebar a:hover {
+a:hover {
   color: #ffffff;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 0.375rem;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02);
 }
 
 .content {
   padding: 20px;
   box-sizing: border-box;
+  flex: 1;
+  overflow: auto;
 }
 
 @media (max-width: 768px) {
   .sidebar {
     display: none;
   }
+}
+
+.sidebar-container {
+  width: 250px;
+}
+
+.main-container {
+  flex: 1;
+}
+
+#dropdown-avatar::after {
+  display: none !important; /* Remove the caret */
 }
