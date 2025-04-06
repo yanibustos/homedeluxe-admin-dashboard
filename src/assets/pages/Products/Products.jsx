@@ -4,6 +4,7 @@ import "./Products.css";
 import { toast } from "react-toastify";
 import fetchApi from "../../../api/fetchApi";
 import { Link } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -35,6 +36,29 @@ function Products() {
     console.log(`Deleted ${productId}`);
     handleCloseRemove();
   };
+
+  // Loading indicator
+  if (loading) {
+    return <Loading />;
+  }
+
+  // Error message
+  if (error) {
+    return (
+      <div className="text-center text-danger alert alert-danger">
+        <span>Something went wrong, please try again.</span>
+      </div>
+    );
+  }
+
+  // No products available
+  if (products.length === 0) {
+    return (
+      <div className="text-center">
+        <span>No products available.</span>
+      </div>
+    );
+  }
 
   return (
     <div className="products-container">
