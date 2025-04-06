@@ -54,7 +54,6 @@ a:hover {
 }
 
 .content {
-  padding: 20px;
   box-sizing: border-box;
   flex: 1;
   overflow: auto;
