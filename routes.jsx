@@ -8,6 +8,7 @@ import Products from "./src/assets/pages/Products/Products";
 import Orders from "./src/assets/pages/Orders/Orders";
 import Categories from "./src/assets/pages/Categories/Categories";
 import NotFound from "./src/assets/pages/NotFound/NotFound";
+import AddProduct from "./src/assets/pages/AddProduct/AddProduct";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
           { path: "users", element: <Users /> },
           { path: "admin", element: <Admin /> },
           { path: "products", element: <Products /> },
+          { path: "products/create", element: <AddProduct /> },
           { path: "orders", element: <Orders /> },
           { path: "categories", element: <Categories /> },
         ],
