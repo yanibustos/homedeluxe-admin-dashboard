@@ -30,7 +30,7 @@ const Layout = () => {
                 <NavLink
                   to="/admin/admin"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   <i className="bi bi-person-gear me-2"></i>Admin
                 </NavLink>
@@ -39,7 +39,7 @@ const Layout = () => {
                 <NavLink
                   to="/admin/users"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   <i className="bi bi-people me-2"></i>Users
                 </NavLink>
@@ -48,7 +48,7 @@ const Layout = () => {
                 <NavLink
                   to="/admin/products"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   <i className="bi bi-bag me-2"></i>Products
                 </NavLink>
@@ -57,7 +57,7 @@ const Layout = () => {
                 <NavLink
                   to="/admin/orders"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   <i className="bi bi-cart me-2"></i>Orders
                 </NavLink>
@@ -66,7 +66,7 @@ const Layout = () => {
                 <NavLink
                   to="/admin/categories"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   <i className="bi bi-tag me-2"></i>Categories
                 </NavLink>
@@ -75,7 +75,7 @@ const Layout = () => {
                 <NavLink
                   to="/"
                   className="nav-link mt-4"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   <i className="bi bi-arrow-return-left me-2"></i>
                   Return to home
@@ -143,7 +143,7 @@ const Layout = () => {
               </Dropdown>
             </div>
           </Navbar>
-          <div className="content bg-light">
+          <div className="content bg-light py-4 px-3">
             <Outlet />
           </div>
         </div>
@@ -170,7 +170,7 @@ const Layout = () => {
                 <NavLink
                   to="/admin/admin"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   <i className="bi bi-person-gear me-2"></i>Admin
                 </NavLink>
@@ -179,7 +179,7 @@ const Layout = () => {
                 <NavLink
                   to="/admin/users"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   <i className="bi bi-people me-2"></i>Users
                 </NavLink>
@@ -188,7 +188,7 @@ const Layout = () => {
                 <NavLink
                   to="/admin/products"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   <i className="bi bi-bag me-2"></i>Products
                 </NavLink>
@@ -197,7 +197,7 @@ const Layout = () => {
                 <NavLink
                   to="/admin/orders"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   <i className="bi bi-cart me-2"></i>Orders
                 </NavLink>
@@ -206,7 +206,7 @@ const Layout = () => {
                 <NavLink
                   to="/admin/categories"
                   className="nav-link"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   <i className="bi bi-tag me-2"></i>Categories
                 </NavLink>
@@ -215,7 +215,7 @@ const Layout = () => {
                 <NavLink
                   to="/"
                   className="nav-link mt-4"
-                  activeClassName="active"
+                  activeclassname="active"
                 >
                   <i className="bi bi-arrow-return-left me-2"></i>
                   Return to home
