@@ -107,8 +107,9 @@ function UpdateAdmin() {
         url: "/reset-password",
         data: { email: user.email },
       });
+      console.log(response);
 
-      if (response.status === 200) {
+      if (response.msg === "Reset link sent to email") {
         toast.success("Password reset email sent. Please check your inbox.");
       } else {
         toast.error("Something went wrong. Please try again.");
