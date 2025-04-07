@@ -12,6 +12,8 @@ function Input({
   classNameLabel = "",
   classNameInput = "",
   disabled = false,
+  min = "",
+  max = "",
 }) {
   return (
     <div className={`input-container ${classNameContainer}`}>
@@ -28,6 +30,8 @@ function Input({
           {...register}
           className={`${errors?.[name] ? "is-invalid" : ""} ${classNameInput}`}
           disabled={disabled}
+          min={min}
+          max={max}
         />
         {errors?.[name] && (
           <span className="text-danger input-text">{errors[name].message}</span>
