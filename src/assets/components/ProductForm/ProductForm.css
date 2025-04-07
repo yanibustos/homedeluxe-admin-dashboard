@@ -1,0 +1,37 @@
+.productForm-container {
+  .addProduct-label {
+    font-size: 12px;
+  }
+
+  textarea {
+    border-radius: 0;
+    border: 1px solid #e0e0e0;
+    background-color: #ffffff;
+    height: 100px;
+    font-size: 12px;
+    width: 100%;
+    outline: none;
+    padding: 10px;
+    resize: none;
+    outline: 0;
+    appearance: none;
+  }
+
+  select {
+    border-radius: 0;
+    border: 1px solid #e0e0e0;
+    background-color: #ffffff;
+    height: 40px;
+    font-size: 12px;
+    font-weight: 600;
+    width: 100%;
+    outline: none;
+    padding: 10px;
+    resize: none;
+    outline: 0;
+  }
+
+  select:focus {
+    box-shadow: none !important;
+  }
+}
