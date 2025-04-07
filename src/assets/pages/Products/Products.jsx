@@ -22,7 +22,6 @@ function Products() {
   const getProducts = async () => {
     try {
       const data = await fetchApi({ method: "get", url: "/products" });
-      console.log(data);
       setProducts(data);
     } catch (err) {
       setError(err.message);
@@ -61,7 +60,7 @@ function Products() {
   }
 
   return (
-    <div className="products-container">
+    <div className="products-container container-fluid">
       <div className="products-header d-flex justify-content-between align-items-center mb-3">
         <span className="fs-5 text-uppercase fw-semibold">Products</span>
         <Link
