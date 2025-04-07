@@ -10,6 +10,8 @@ import Categories from "./src/assets/pages/Categories/Categories";
 import NotFound from "./src/assets/pages/NotFound/NotFound";
 import AddProduct from "./src/assets/pages/AddProduct/AddProduct";
 import UpdateProduct from "./src/assets/pages/UpdateProduct/UpdateProduct";
+import AddAdmin from "./src/assets/pages/AddAdmin/AddAdmin";
+import UpdateAdmin from "./src/assets/pages/UpdateAdmin/UpdateAdmin";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,8 @@ const router = createBrowserRouter([
           { path: "", element: <Dashboard /> },
           { path: "users", element: <Users /> },
           { path: "admin", element: <Admin /> },
+          { path: "admin/create", element: <AddAdmin /> },
+          { path: "admin/:id", element: <UpdateAdmin /> },
           { path: "products", element: <Products /> },
           { path: "products/create", element: <AddProduct /> },
           { path: "products/:id", element: <UpdateProduct /> },
