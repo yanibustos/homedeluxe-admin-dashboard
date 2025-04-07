@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, Modal } from "react-bootstrap";
 
 function RemoveModal({ show, handleClose, item, handleOnClick }) {
