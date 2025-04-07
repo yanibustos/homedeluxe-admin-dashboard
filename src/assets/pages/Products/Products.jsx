@@ -95,7 +95,14 @@ function Products() {
               <td className="text-start">
                 {product.currency} {product.price}
               </td>
-              <td>{product.stock}</td>
+              <td
+                className={product.stock > 0 ? "text-success" : "text-danger"}
+              >
+                {product.stock}
+                {product.stock === 0 && (
+                  <i className="bi bi-exclamation-triangle-fill text-danger ms-1"></i>
+                )}
+              </td>
               <td>
                 <i
                   className={
@@ -106,8 +113,10 @@ function Products() {
                 ></i>
               </td>
               <td>
-                <div className="d-flex justify-content-center gap-3 align-items-center">
-                  <i className="bi bi-pencil-square fs-6 edit-icon text-primary"></i>
+                <div className="d-flex justify-content-center gap-3 align-items-center products-actions">
+                  <Link to={`/admin/products/${product.id}`}>
+                    <i className="bi bi-pencil-square fs-6 edit-icon text-primary"></i>
+                  </Link>
                   <i
                     className="bi bi-trash3-fill fs-6 delete-icon text-danger"
                     onClick={handleShowRemove}

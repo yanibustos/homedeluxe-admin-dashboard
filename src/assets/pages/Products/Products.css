@@ -1,2 +1,5 @@
 .products-container {
+  .products-actions i {
+    cursor: pointer;
+  }
 }
