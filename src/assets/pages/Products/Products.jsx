@@ -10,10 +10,14 @@ function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const [showRemove, setShowRemove] = useState(false);
   const handleCloseRemove = () => setShowRemove(false);
-  const handleShowRemove = () => setShowRemove(true);
+  const handleShowRemove = (product) => {
+    setSelectedProduct(product);
+    setShowRemove(true);
+  };
 
   useEffect(() => {
     getProducts();
@@ -34,6 +38,7 @@ function Products() {
   const handleRemoveProduct = (productId) => {
     console.log(`Deleted ${productId}`);
     handleCloseRemove();
+    setProducts(products.filter((product) => product.id !== productId));
   };
 
   // Loading indicator
@@ -118,14 +123,18 @@ function Products() {
                   </Link>
                   <i
                     className="bi bi-trash3-fill fs-6 delete-icon text-danger"
-                    onClick={handleShowRemove}
+                    onClick={() => handleShowRemove(product)}
                   ></i>
-                  <RemoveModal
-                    show={showRemove}
-                    handleClose={handleCloseRemove}
-                    item={product.name}
-                    handleOnClick={handleRemoveProduct}
-                  />
+                  {selectedProduct && (
+                    <RemoveModal
+                      show={showRemove}
+                      handleClose={handleCloseRemove}
+                      item={selectedProduct.name}
+                      handleOnClick={() =>
+                        handleRemoveProduct(selectedProduct.id)
+                      }
+                    />
+                  )}
                 </div>
               </td>
             </tr>
