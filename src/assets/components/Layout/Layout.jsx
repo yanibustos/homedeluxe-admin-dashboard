@@ -100,7 +100,7 @@ const Layout = () => {
                 &#9776;
               </Button>
             </div>
-            <div className="d-flex flex-grow-1 justify-content-between align-items-center">
+            <div className="d-flex flex-grow-1 justify-content-between align-items-center container">
               <Navbar.Brand
                 as={Link}
                 to={"/admin"}
