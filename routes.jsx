@@ -9,6 +9,7 @@ import Orders from "./src/assets/pages/Orders/Orders";
 import Categories from "./src/assets/pages/Categories/Categories";
 import NotFound from "./src/assets/pages/NotFound/NotFound";
 import AddProduct from "./src/assets/pages/AddProduct/AddProduct";
+import UpdateProduct from "./src/assets/pages/UpdateProduct/UpdateProduct";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
           { path: "admin", element: <Admin /> },
           { path: "products", element: <Products /> },
           { path: "products/create", element: <AddProduct /> },
+          { path: "products/:id", element: <UpdateProduct /> },
           { path: "orders", element: <Orders /> },
           { path: "categories", element: <Categories /> },
         ],
