@@ -7,12 +7,14 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react.js";
 import { persistor, store } from "./assets/redux/storeConfig.js";
 import router from "../routes.jsx";
+import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <RouterProvider router={router} />
+        <ToastContainer />
       </PersistGate>
     </Provider>
   </StrictMode>
