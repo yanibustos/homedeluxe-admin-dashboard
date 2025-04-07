@@ -59,7 +59,7 @@ a:hover {
   overflow: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .sidebar {
     display: none;
   }
