@@ -12,6 +12,7 @@ import AddProduct from "./src/assets/pages/AddProduct/AddProduct";
 import UpdateProduct from "./src/assets/pages/UpdateProduct/UpdateProduct";
 import AddAdmin from "./src/assets/pages/AddAdmin/AddAdmin";
 import UpdateAdmin from "./src/assets/pages/UpdateAdmin/UpdateAdmin";
+import OrderDetails from "./src/assets/pages/OrderDetails/OrderDetails";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
           { path: "products/create", element: <AddProduct /> },
           { path: "products/:id", element: <UpdateProduct /> },
           { path: "orders", element: <Orders /> },
+          { path: "orders/:id", element: <OrderDetails /> },
           { path: "categories", element: <Categories /> },
         ],
       },

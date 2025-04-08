@@ -1,0 +1,13 @@
+.orderDetails-container {
+  li {
+    line-height: 30px;
+    margin-top: 0.5rem;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
