@@ -13,7 +13,7 @@ import UpdateProduct from "./src/assets/pages/UpdateProduct/UpdateProduct";
 import AddAdmin from "./src/assets/pages/AddAdmin/AddAdmin";
 import UpdateAdmin from "./src/assets/pages/UpdateAdmin/UpdateAdmin";
 import OrderDetails from "./src/assets/pages/OrderDetails/OrderDetails";
-import Login from "./src/assets/pages/Admin/Login/Login";
+import Login from "./src/assets/pages/Login/Login";
 import Logout from "./src/assets/pages/Logout/Logout";
 
 const router = createBrowserRouter([
