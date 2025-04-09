@@ -1,0 +1,48 @@
+.not-found-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .not-found-card {
+    text-align: center;
+    h1 {
+      font-size: 300px;
+      margin: 0;
+      color: #ced4da;
+    }
+
+    p {
+      font-weight: bold;
+      color: #ced4da;
+      margin-bottom: 1.5rem;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .button {
+    background-color: #000000;
+    text-transform: uppercase;
+    text-align: center;
+    border: none;
+    line-height: 40px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 0 10px;
+  }
+
+  @media (max-width: 576px) {
+    .not-found-card h1 {
+      font-size: 180px;
+    }
+
+    .button {
+      font-size: 12px; /* Adjust button font size for smaller screens */
+    }
+  }
+}
