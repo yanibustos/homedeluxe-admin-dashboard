@@ -133,7 +133,7 @@ const Layout = () => {
                   <Dropdown.Item eventKey="2">
                     {" "}
                     <Link
-                      to={"/logout"}
+                      to={"/admin/logout"}
                       className="text-decoration-none text-dark"
                     >
                       Logout
