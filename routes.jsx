@@ -13,29 +13,34 @@ import UpdateProduct from "./src/assets/pages/UpdateProduct/UpdateProduct";
 import AddAdmin from "./src/assets/pages/AddAdmin/AddAdmin";
 import UpdateAdmin from "./src/assets/pages/UpdateAdmin/UpdateAdmin";
 import OrderDetails from "./src/assets/pages/OrderDetails/OrderDetails";
+import Login from "./src/assets/pages/Admin/Login/Login";
+import Logout from "./src/assets/pages/Logout/Logout";
 
 const router = createBrowserRouter([
+  {
+    path: "/admin/login",
+    element: <Login />,
+  },
+  {
+    path: "/admin/logout",
+    element: <Logout />,
+  },
+
   {
     path: "/admin",
     element: <ProtectedRoute />,
     children: [
-      {
-        path: "/admin",
-        element: <Layout />,
-        children: [
-          { path: "", element: <Dashboard /> },
-          { path: "users", element: <Users /> },
-          { path: "admin", element: <Admin /> },
-          { path: "admin/create", element: <AddAdmin /> },
-          { path: "admin/:id", element: <UpdateAdmin /> },
-          { path: "products", element: <Products /> },
-          { path: "products/create", element: <AddProduct /> },
-          { path: "products/:id", element: <UpdateProduct /> },
-          { path: "orders", element: <Orders /> },
-          { path: "orders/:id", element: <OrderDetails /> },
-          { path: "categories", element: <Categories /> },
-        ],
-      },
+      { path: "", element: <Dashboard /> },
+      { path: "users", element: <Users /> },
+      { path: "admin", element: <Admin /> },
+      { path: "admin/create", element: <AddAdmin /> },
+      { path: "admin/:id", element: <UpdateAdmin /> },
+      { path: "products", element: <Products /> },
+      { path: "products/create", element: <AddProduct /> },
+      { path: "products/:id", element: <UpdateProduct /> },
+      { path: "orders", element: <Orders /> },
+      { path: "orders/:id", element: <OrderDetails /> },
+      { path: "categories", element: <Categories /> },
     ],
   },
 
