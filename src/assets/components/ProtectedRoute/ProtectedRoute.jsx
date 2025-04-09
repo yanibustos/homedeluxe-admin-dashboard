@@ -6,7 +6,7 @@ import Layout from "../Layout/Layout";
 function ProtectedRoute() {
   const user = useSelector((state) => state.user);
 
-  return user.accessToken ? (
+  return user?.accessToken ? (
     <Layout>
       <Outlet />
     </Layout>
