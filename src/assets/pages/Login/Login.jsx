@@ -7,12 +7,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import "./Login.css";
-import { login } from "../../../redux/userSlice";
-import fetchApi from "../../../../api/fetchApi";
-import Input from "../../../components/commons/Input/Input";
-import InputCheckbox from "../../../components/commons/InputCheckbox/InputCheckbox";
-import BlackButton from "../../../components/commons/BlackButton/BlackButton";
-import SideImage from "../../../components/SideImage/SideImage";
+import { login } from "../../redux/userSlice";
+import fetchApi from "../../../api/fetchApi";
+import Input from "../../components/commons/Input/Input";
+import InputCheckbox from "../../components/commons/InputCheckbox/InputCheckbox";
+import BlackButton from "../../components/commons/BlackButton/BlackButton";
+import SideImage from "../../components/SideImage/SideImage";
 
 const schema = yup
   .object({
