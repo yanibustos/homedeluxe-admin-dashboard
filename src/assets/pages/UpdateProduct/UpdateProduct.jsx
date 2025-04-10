@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import fetchApi from "../../../api/fetchApi";
 import ProductForm from "../../components/ProductForm/ProductForm";
 import "./UpdateProduct.css";
@@ -11,8 +11,12 @@ import Loading from "../../components/Loading/Loading";
 
 //TODO: Add the right ids when relationship and model is defined in API
 const categories = [
-  { id: "Sofas and armchairs", name: "Sofas and armchairs" },
-  { id: "Coffee Tables", name: "Coffee Tables" },
+  { id: 1, name: "Sofas and armchairs" },
+  { id: 2, name: "Decoration" },
+  { id: 3, name: "Tables and desk" },
+  { id: 4, name: "Kitchen furniture" },
+  { id: 5, name: "Bedroom" },
+  { id: 6, name: "Outdoors" },
 ];
 
 const currency = [{ id: "USD", name: "USD" }];
@@ -40,6 +44,7 @@ function UpdateProduct() {
   const params = useParams();
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const getProduct = async () => {
     try {
@@ -103,10 +108,10 @@ function UpdateProduct() {
       formData.append("currency", data.currency);
       formData.append("featured", data.featured);
 
-      // Append the file input (image) if it exists
-      if (data.image[0]) {
-        formData.append("image", data.image[0]);
-      }
+      // Append each selected image to formData
+      Array.from(images).forEach((image) => {
+        formData.append("image", image);
+      });
 
       const response = await fetchApi({
         method: "patch",
