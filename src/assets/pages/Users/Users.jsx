@@ -83,7 +83,7 @@ function Users() {
         <span className="fs-5 text-uppercase fw-semibold">Users</span>
       </div>
       <table className="table table-hover text-center align-middles rounded rounded-3 overflow-hidden shadow-sm table-text">
-        <thead className="table-header">
+        <thead className="table-header table-dark">
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Email</th>

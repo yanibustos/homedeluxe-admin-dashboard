@@ -76,7 +76,7 @@ function Products() {
         </Link>
       </div>
       <table className="table table-hover text-center align-middle dashboard-table rounded rounded-3 overflow-hidden shadow-sm table-text">
-        <thead className="table-header">
+        <thead className="table-header table-dark">
           <tr>
             <th scope="col">Id</th>
             <th scope="col" className="text-start">

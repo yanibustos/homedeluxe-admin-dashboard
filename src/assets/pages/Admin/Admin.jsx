@@ -6,38 +6,6 @@ import Loading from "../../components/Loading/Loading";
 import { toast } from "react-toastify";
 import fetchApi from "../../../api/fetchApi";
 
-// const users = [
-//   {
-//     id: 1,
-//     firstname: "admin",
-//     lastname: "admin",
-//     email: "admin@homedeluxe.com",
-//     avatar: "/img/avatar.png",
-//     role: 300,
-//   },
-//   {
-//     id: 2,
-//     firstname: "Yanina",
-//     lastname: "Bustos",
-//     email: "ybustos@homedeluxe.com",
-//     avatar: "/img/avatar.png",
-//   },
-//   {
-//     id: 3,
-//     firstname: "Darlen",
-//     lastname: "Hornia",
-//     email: "dhornia@homedeluxe.com",
-//     avatar: "/img/avatar.png",
-//   },
-//   {
-//     id: 4,
-//     firstname: "Cristofer",
-//     lastname: "Fernández",
-//     email: "cfernandez@homedeluxe.com",
-//     avatar: "/img/avatar.png",
-//   },
-// ];
-
 function Admin() {
   const [admins, setAdmins] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -122,7 +90,7 @@ function Admin() {
         </Link>
       </div>
       <table className="table table-hover text-center align-middles rounded rounded-3 overflow-hidden shadow-sm table-text">
-        <thead className="table-header">
+        <thead className="table-header table-dark">
           <tr>
             <th scope="col">Id</th>
             <th scope="col" className="text-start">
