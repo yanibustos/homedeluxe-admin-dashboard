@@ -4,72 +4,13 @@ import { useEffect, useState } from "react";
 import Loading from "../../components/Loading/Loading";
 import fetchApi from "../../../api/fetchApi";
 import { formatDate } from "../../helpers/formatDate";
-
-// const orders = [
-//   {
-//     id: "123456",
-//     created_at: "25/05/2025",
-//     amount: "USD 460",
-//     items: [
-//       {
-//         id: "p1",
-//         name: "SOFA SENSE White 2-Seater",
-//         price: "USD 890",
-//         quantity: 1,
-//         status: "Processing",
-//         image:
-//           "https://f.fcdn.app/imgs/24194d/www.viasono.com.uy/viasuy/18b0/webp/catalogo/B204051941_204050283_1/460x460/sofa-sense-blanco-2-cuerpos.jpg",
-//       },
-//       {
-//         id: "p2",
-//         name: "Captivating Brown Circular Coffee Table",
-//         price: "USD 990",
-//         quantity: 2,
-//         status: "Shipped",
-//         image:
-//           "https://f.fcdn.app/imgs/5a0333/www.viasono.com.uy/viasuy/91bf/webp/catalogo/B205041844_205040167_1/460x460/mesa-de-centro-cautiva-marron-circular.jpg",
-//       },
-//     ],
-//   },
-//   {
-//     id: "987654",
-//     created_at: "01/04/2025",
-//     amount: "USD 1200",
-//     items: [
-//       {
-//         id: "p1",
-//         name: "SOFA SENSE White 2-Seater",
-//         price: "USD 600",
-//         quantity: 1,
-//         status: "Processing",
-//         image:
-//           "https://f.fcdn.app/imgs/24194d/www.viasono.com.uy/viasuy/18b0/webp/catalogo/B204051941_204050283_1/460x460/sofa-sense-blanco-2-cuerpos.jpg",
-//       },
-//       {
-//         id: "p2",
-//         name: "Captivating Brown Circular Coffee Table",
-//         price: "USD 600",
-//         quantity: 1,
-//         status: "Shipped",
-//         image:
-//           "https://f.fcdn.app/imgs/5a0333/www.viasono.com.uy/viasuy/91bf/webp/catalogo/B205041844_205040167_1/460x460/mesa-de-centro-cautiva-marron-circular.jpg",
-//       },
-//     ],
-//   },
-// ];
+import { toast } from "react-toastify";
+import { calculateOrderTotal } from "../../helpers/calculateOrderTotal";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [selectedOrder, setSelectedOrder] = useState(null);
-
-  const [showRemove, setShowRemove] = useState(false);
-  const handleCloseRemove = () => setShowRemove(false);
-  const handleShowRemove = (order) => {
-    setSelectedOrder(order);
-    setShowRemove(true);
-  };
 
   useEffect(() => {
     getOrders();
@@ -144,7 +85,7 @@ function Orders() {
         <span className="fs-5 text-uppercase fw-semibold">Orders</span>
       </div>
       <table className="table table-hover text-center align-middles rounded rounded-3 overflow-hidden shadow-sm table-text">
-        <thead className="table-header">
+        <thead className="table-header table-dark">
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Date</th>
@@ -170,9 +111,15 @@ function Orders() {
                     {order.user.firstname} {order.user.lastname}
                   </td>
                   <td className="align-content-center">
-                    {order.products.length}
+                    {order.items.reduce(
+                      (total, item) => total + item.quantity,
+                      0
+                    )}
                   </td>
-                  <td className="align-content-center">{order.totalPrice}</td>
+                  <td className="align-content-center">
+                    <span className="me-1">USD</span>
+                    {calculateOrderTotal(order)}
+                  </td>
                   <td className="align-content-center">
                     {order.paymentMethod}
                   </td>
