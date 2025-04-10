@@ -1,0 +1,5 @@
+.admin-container {
+  .admin-actions i {
+    cursor: pointer;
+  }
+}

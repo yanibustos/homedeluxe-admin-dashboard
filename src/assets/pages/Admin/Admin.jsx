@@ -146,7 +146,7 @@ function Admin() {
               <td className="text-start">{user.lastname}</td>
               <td className="text-start">{user.email}</td>
               <td>
-                <div className="d-flex justify-content-center gap-3 align-items-center products-actions">
+                <div className="d-flex justify-content-center gap-3 align-items-center admin-actions">
                   <Link to={`/admin/admin/${user.id}`}>
                     <i className="bi bi-pencil-square fs-6 edit-icon text-primary"></i>
                   </Link>
