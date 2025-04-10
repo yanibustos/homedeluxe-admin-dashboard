@@ -66,7 +66,7 @@ function ProductForm({
           >
             <option value="">Choose a category</option>
             {categories.map((category) => (
-              <option key={category.id} value={category.id}>
+              <option key={category.id} value={category.name}>
                 {category.name}
               </option>
             ))}
