@@ -11,8 +11,12 @@ import ProductForm from "../../components/ProductForm/ProductForm";
 
 //TODO: Add the right ids when relationship and model is defined in API
 const categories = [
-  { id: "Sofas and armchairs", name: "Sofas and armchairs" },
-  { id: "Coffee Tables", name: "Coffee Tables" },
+  { id: 1, name: "Sofas and armchairs" },
+  { id: 2, name: "Decoration" },
+  { id: 3, name: "Tables and desk" },
+  { id: 4, name: "Kitchen furniture" },
+  { id: 5, name: "Bedroom" },
+  { id: 6, name: "Outdoors" },
 ];
 
 const currency = [{ id: "USD", name: "USD" }];
