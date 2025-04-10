@@ -1,0 +1,5 @@
+.orders-container {
+  .orders-actions i {
+    cursor: pointer;
+  }
+}

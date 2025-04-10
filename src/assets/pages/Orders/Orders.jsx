@@ -1,64 +1,119 @@
 import { Link } from "react-router-dom";
 import "./Orders.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loading from "../../components/Loading/Loading";
+import fetchApi from "../../../api/fetchApi";
+import { formatDate } from "../../helpers/formatDate";
 
-const orders = [
-  {
-    id: "123456",
-    created_at: "25/05/2025",
-    amount: "USD 460",
-    items: [
-      {
-        id: "p1",
-        name: "SOFA SENSE White 2-Seater",
-        price: "USD 890",
-        quantity: 1,
-        status: "Processing",
-        image:
-          "https://f.fcdn.app/imgs/24194d/www.viasono.com.uy/viasuy/18b0/webp/catalogo/B204051941_204050283_1/460x460/sofa-sense-blanco-2-cuerpos.jpg",
-      },
-      {
-        id: "p2",
-        name: "Captivating Brown Circular Coffee Table",
-        price: "USD 990",
-        quantity: 2,
-        status: "Shipped",
-        image:
-          "https://f.fcdn.app/imgs/5a0333/www.viasono.com.uy/viasuy/91bf/webp/catalogo/B205041844_205040167_1/460x460/mesa-de-centro-cautiva-marron-circular.jpg",
-      },
-    ],
-  },
-  {
-    id: "987654",
-    created_at: "01/04/2025",
-    amount: "USD 1200",
-    items: [
-      {
-        id: "p1",
-        name: "SOFA SENSE White 2-Seater",
-        price: "USD 600",
-        quantity: 1,
-        status: "Processing",
-        image:
-          "https://f.fcdn.app/imgs/24194d/www.viasono.com.uy/viasuy/18b0/webp/catalogo/B204051941_204050283_1/460x460/sofa-sense-blanco-2-cuerpos.jpg",
-      },
-      {
-        id: "p2",
-        name: "Captivating Brown Circular Coffee Table",
-        price: "USD 600",
-        quantity: 1,
-        status: "Shipped",
-        image:
-          "https://f.fcdn.app/imgs/5a0333/www.viasono.com.uy/viasuy/91bf/webp/catalogo/B205041844_205040167_1/460x460/mesa-de-centro-cautiva-marron-circular.jpg",
-      },
-    ],
-  },
-];
+// const orders = [
+//   {
+//     id: "123456",
+//     created_at: "25/05/2025",
+//     amount: "USD 460",
+//     items: [
+//       {
+//         id: "p1",
+//         name: "SOFA SENSE White 2-Seater",
+//         price: "USD 890",
+//         quantity: 1,
+//         status: "Processing",
+//         image:
+//           "https://f.fcdn.app/imgs/24194d/www.viasono.com.uy/viasuy/18b0/webp/catalogo/B204051941_204050283_1/460x460/sofa-sense-blanco-2-cuerpos.jpg",
+//       },
+//       {
+//         id: "p2",
+//         name: "Captivating Brown Circular Coffee Table",
+//         price: "USD 990",
+//         quantity: 2,
+//         status: "Shipped",
+//         image:
+//           "https://f.fcdn.app/imgs/5a0333/www.viasono.com.uy/viasuy/91bf/webp/catalogo/B205041844_205040167_1/460x460/mesa-de-centro-cautiva-marron-circular.jpg",
+//       },
+//     ],
+//   },
+//   {
+//     id: "987654",
+//     created_at: "01/04/2025",
+//     amount: "USD 1200",
+//     items: [
+//       {
+//         id: "p1",
+//         name: "SOFA SENSE White 2-Seater",
+//         price: "USD 600",
+//         quantity: 1,
+//         status: "Processing",
+//         image:
+//           "https://f.fcdn.app/imgs/24194d/www.viasono.com.uy/viasuy/18b0/webp/catalogo/B204051941_204050283_1/460x460/sofa-sense-blanco-2-cuerpos.jpg",
+//       },
+//       {
+//         id: "p2",
+//         name: "Captivating Brown Circular Coffee Table",
+//         price: "USD 600",
+//         quantity: 1,
+//         status: "Shipped",
+//         image:
+//           "https://f.fcdn.app/imgs/5a0333/www.viasono.com.uy/viasuy/91bf/webp/catalogo/B205041844_205040167_1/460x460/mesa-de-centro-cautiva-marron-circular.jpg",
+//       },
+//     ],
+//   },
+// ];
 
 function Orders() {
+  const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+
+  const [showRemove, setShowRemove] = useState(false);
+  const handleCloseRemove = () => setShowRemove(false);
+  const handleShowRemove = (order) => {
+    setSelectedOrder(order);
+    setShowRemove(true);
+  };
+
+  useEffect(() => {
+    getOrders();
+  }, []);
+
+  const getOrders = async () => {
+    setLoading(true);
+    try {
+      const data = await fetchApi({ method: "get", url: "/orders" });
+      console.log(data);
+      setOrders(data);
+    } catch (err) {
+      setError(err.message);
+      toast.error("Failed to load orders.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleStatusChange = async (orderId, newStatus) => {
+    try {
+      const updatedOrders = orders.map((order) =>
+        order.id === orderId ? { ...order, status: newStatus } : order
+      );
+      setOrders(updatedOrders);
+
+      await fetchApi({
+        method: "patch",
+        url: `/orders/${orderId}/status`,
+        data: { status: newStatus },
+      });
+
+      toast.success("Status updated successfully.");
+    } catch (err) {
+      console.error("Failed to update status", err);
+
+      const revertedOrders = orders.map((order) =>
+        order.id === orderId ? { ...order, status: order.status } : order
+      );
+      setOrders(revertedOrders);
+
+      toast.error("Failed to update order status.");
+    }
+  };
 
   // Loading indicator
   if (loading) {
@@ -102,30 +157,54 @@ function Orders() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="align-content-center">123456</td>
-            <td className="align-content-center">07/04/2025 </td>
+          {orders.length > 0 &&
+            orders.map((order) => {
+              return (
+                <tr key={order.id}>
+                  <td className="align-content-center">{order.id}</td>
+                  <td className="align-content-center">
+                    {formatDate(order.createdAt)}
+                  </td>
 
-            <td className="align-content-center">Yanina Bustos</td>
-            <td className="align-content-center">3</td>
-            <td className="align-content-center">USD 1750</td>
-            <td className="align-content-center">Visa</td>
-            <td className="align-content-center">
-              <select name="status" id="status" className="form-select">
-                <option value="">Choose a status</option>
-                <option value="paid">Paid</option>
-                <option value="shipped">Shipped</option>
-                <option value="confirmed">Confirmed</option>
-                <option value="delivered">Delivered</option>
-                <option value="cancelled">Cancelled</option>
-              </select>
-            </td>
-            <td className="align-content-center">
-              <Link to={`/admin/orders/${"order.id"}`} className="text-dark">
-                <i className="bi bi-card-list fs-5 "></i>
-              </Link>
-            </td>
-          </tr>
+                  <td className="align-content-center">
+                    {order.user.firstname} {order.user.lastname}
+                  </td>
+                  <td className="align-content-center">
+                    {order.products.length}
+                  </td>
+                  <td className="align-content-center">{order.totalPrice}</td>
+                  <td className="align-content-center">
+                    {order.paymentMethod}
+                  </td>
+                  <td className="align-content-center">
+                    <select
+                      name="status"
+                      id="status"
+                      className="form-select"
+                      value={order.status}
+                      onChange={(e) =>
+                        handleStatusChange(order.id, e.target.value)
+                      }
+                    >
+                      <option value="">Choose a status</option>
+                      <option value="pending">Pending</option>
+                      <option value="paid">Paid</option>
+                      <option value="processing">Processing</option>
+                      <option value="shipped">Shipped</option>
+                      <option value="canceled">Canceled</option>
+                    </select>
+                  </td>
+                  <td className="align-content-center orders-actions">
+                    <Link
+                      to={`/admin/orders/${order.id}`}
+                      className="text-dark"
+                    >
+                      <i className="bi bi-card-list fs-5 "></i>
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </div>
