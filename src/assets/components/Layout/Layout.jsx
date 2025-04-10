@@ -3,9 +3,11 @@ import { Button, Navbar, Nav, Offcanvas, Dropdown } from "react-bootstrap";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "/img/logo-white.png";
 import "./Layout.css";
+import { useSelector } from "react-redux";
 
 const Layout = () => {
   const [show, setShow] = useState(false);
+  const user = useSelector((state) => state.user);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -124,7 +126,7 @@ const Layout = () => {
                 <Dropdown.Menu align="end">
                   <Dropdown.Item eventKey="1">
                     <Link
-                      to={"/account/profile"}
+                      to={`/admin/admin/${user.id}`}
                       className="text-decoration-none text-dark"
                     >
                       My Profile
