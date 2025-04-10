@@ -117,7 +117,13 @@ const Layout = () => {
                   className="p-0 border-0 bg-transparent"
                 >
                   <img
-                    src="/img/logo-white.png"
+                    src={
+                      user.image && user.image.includes("http")
+                        ? user.image
+                        : user.image
+                        ? `${import.meta.VITE_SUPABASE_URL}/${user.image}`
+                        : "/img/avatar.png"
+                    }
                     alt="User Avatar"
                     className="layout-avatar"
                   />
