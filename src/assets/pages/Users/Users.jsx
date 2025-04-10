@@ -102,7 +102,7 @@ function Users() {
               <td>{user.phone}</td>
               <td>{user.address}</td>
               <td>
-                <div className="d-flex justify-content-center gap-3 align-items-center products-actions">
+                <div className="d-flex justify-content-center gap-3 align-items-center users-actions">
                   <i
                     className="bi bi-trash3-fill fs-6 delete-icon text-danger"
                     onClick={() => handleShowRemove(user)}
