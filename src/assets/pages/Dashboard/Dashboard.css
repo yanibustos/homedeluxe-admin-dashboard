@@ -1,0 +1,23 @@
+.dashboard-container {
+  .card-lift {
+    border-radius: 0.5rem;
+    transition: all 0.4s;
+  }
+
+  .card-lift:hover {
+    box-shadow: 0 5px 10px rgba(30, 32, 37, 0.12);
+    transform: translateY(-0.3rem);
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #a193ff;
+  }
+
+  a:hover {
+    text-decoration: none;
+    font-weight: 600;
+    color: #b4a9ff;
+  }
+}
