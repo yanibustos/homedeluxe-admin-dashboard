@@ -70,8 +70,10 @@ function AddProduct() {
       formData.append("featured", data.featured);
 
       // Append the file input (image) if it exists
-      if (data.image[0]) {
-        formData.append("image", data.image[0]);
+      if (data.image && data.image.length > 0) {
+        for (const file of data.image) {
+          formData.append("image", file);
+        }
       }
 
       const response = await fetchApi({
@@ -111,22 +113,3 @@ function AddProduct() {
 }
 
 export default AddProduct;
-
-// Product.init(
-//     {
-
-//         name: DataTypes.STRING,
-//         description: DataTypes.TEXT,
-//         category: DataTypes.STRING,
-//         price: DataTypes.DECIMAL,
-//         currency: DataTypes.STRING,
-//         stock: DataTypes.INTEGER,
-//         featured: DataTypes.BOOLEAN,
-//         image: {
-//             type: DataTypes.JSON,
-//             field: 'image',
-//             defaultValue: {}
-//         },
-//     },
-//     { sequelize, modelName: "product" }
-// );
