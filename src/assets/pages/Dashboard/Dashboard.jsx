@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
-import { toast } from "react-toastify";
 
 function Dashboard() {
   return (
