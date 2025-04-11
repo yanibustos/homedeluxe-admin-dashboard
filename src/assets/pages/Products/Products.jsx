@@ -36,7 +36,6 @@ function Products() {
   };
 
   const handleRemoveProduct = (productId) => {
-    console.log(`Deleted ${productId}`);
     handleCloseRemove();
     setProducts(products.filter((product) => product.id !== productId));
   };

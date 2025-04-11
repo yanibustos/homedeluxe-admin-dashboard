@@ -87,7 +87,6 @@ function UpdateAdmin() {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      console.log(user);
       if (user) {
         toast.success("User updated successfully, redirecting to Admin view");
         setTimeout(() => {
@@ -100,15 +99,12 @@ function UpdateAdmin() {
   };
 
   const handleResetPassword = async () => {
-    console.log("handleReset");
     try {
       const response = await fetchApi({
         method: "POST",
         url: "/reset-password",
         data: { email: user.email },
       });
-      console.log(response);
-
       if (response.msg === "Reset link sent to email") {
         toast.success("Password reset email sent. Please check your inbox.");
       } else {
