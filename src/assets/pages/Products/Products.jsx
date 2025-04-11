@@ -35,9 +35,17 @@ function Products() {
     }
   };
 
-  const handleRemoveProduct = (productId) => {
-    handleCloseRemove();
-    setProducts(products.filter((product) => product.id !== productId));
+  const handleRemoveProduct = async (productId) => {
+    try {
+      const data = await fetchApi({
+        method: "delete",
+        url: `/products/${productId}`,
+      });
+      getProducts();
+      handleCloseRemove();
+    } catch (error) {
+      toast.error("Something went wrong, please try again");
+    }
   };
 
   // Loading indicator
