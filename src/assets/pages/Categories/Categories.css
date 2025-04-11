@@ -1,0 +1,5 @@
+.categories-container {
+  .categories-actions i {
+    cursor: pointer;
+  }
+}
