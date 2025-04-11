@@ -36,15 +36,12 @@ function AddAdmin() {
   });
 
   const onSubmit = async (data) => {
-    console.log("submit");
     try {
       const user = await fetchApi({
         method: "post",
         url: "/admin",
         data: data,
       });
-
-      console.log(data);
       if (user) {
         toast.success(
           "Account created successfully, redirecting to Admin view"

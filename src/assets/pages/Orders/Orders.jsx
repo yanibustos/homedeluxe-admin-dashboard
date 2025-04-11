@@ -20,7 +20,6 @@ function Orders() {
     setLoading(true);
     try {
       const data = await fetchApi({ method: "get", url: "/orders" });
-      console.log(data);
       setOrders(data);
     } catch (err) {
       setError(err.message);

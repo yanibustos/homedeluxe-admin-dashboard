@@ -23,7 +23,6 @@ function OrderDetails() {
         method: "get",
         url: `/orders/${params.id}`,
       });
-      console.log(data);
       setOrder(data.order);
     } catch (err) {
       setError(err.message);

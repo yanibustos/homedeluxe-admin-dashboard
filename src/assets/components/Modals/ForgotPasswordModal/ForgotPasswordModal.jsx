@@ -11,7 +11,10 @@ import Input from "../../commons/Input/Input";
 
 const schema = yup
   .object({
-    email: yup.string().email("Invalid email format").required("Email is required"),
+    email: yup
+      .string()
+      .email("Invalid email format")
+      .required("Email is required"),
   })
   .required();
 
@@ -35,7 +38,6 @@ function ForgotPasswordModal({ show, handleClose }) {
         url: "/reset-password",
         data: { email: data.email },
       });
-      console.log(reset);
       toast.success("Check your email for the reset link.");
       handleClose();
     } catch (error) {
@@ -61,7 +63,11 @@ function ForgotPasswordModal({ show, handleClose }) {
             classNameLabel="fw-semibold"
           />
           <div className="d-grid mt-3">
-            <BlackButton type="submit" loading={loading} name="Send Reset Link" />
+            <BlackButton
+              type="submit"
+              loading={loading}
+              name="Send Reset Link"
+            />
           </div>
         </form>
       </Modal.Body>

@@ -97,7 +97,6 @@ function UpdateProduct() {
   const onSubmit = async (data) => {
     try {
       const formData = new FormData();
-      console.log({ formData });
 
       // Append each field to the FormData object
       formData.append("name", data.name);
