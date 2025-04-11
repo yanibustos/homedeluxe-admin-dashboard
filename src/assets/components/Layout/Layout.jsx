@@ -74,14 +74,14 @@ const Layout = () => {
                 </NavLink>
               </Nav.Item>
               <Nav.Item className="mt-4 border-top border-secondary">
-                <NavLink
-                  to="/"
+                <a
+                  href={`${import.meta.env.VITE_FRONT_URL}`}
                   className="nav-link mt-4"
                   activeclassname="active"
                 >
                   <i className="bi bi-arrow-return-left me-2"></i>
                   Return to home
-                </NavLink>
+                </a>
               </Nav.Item>
             </Nav>
           </div>
@@ -220,14 +220,14 @@ const Layout = () => {
                 </NavLink>
               </Nav.Item>
               <Nav.Item className="mt-4 border-top border-secondary">
-                <NavLink
-                  to="/"
+                <a
+                  href={`${import.meta.env.VITE_FRONT_URL}`}
                   className="nav-link mt-4"
                   activeclassname="active"
                 >
                   <i className="bi bi-arrow-return-left me-2"></i>
                   Return to home
-                </NavLink>
+                </a>
               </Nav.Item>
             </Nav>
           </Offcanvas.Body>
