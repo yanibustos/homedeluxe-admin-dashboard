@@ -121,7 +121,7 @@ const Layout = () => {
                       user.image && user.image.includes("http")
                         ? user.image
                         : user.image
-                        ? `${import.meta.VITE_SUPABASE_URL}/${user.image}`
+                        ? `${import.meta.env.VITE_SUPABASE_URL}/${user.image}`
                         : "/img/avatar.png"
                     }
                     alt="User Avatar"
