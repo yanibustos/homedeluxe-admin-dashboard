@@ -9,16 +9,6 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import Loading from "../../components/Loading/Loading";
 
-//TODO: Add the right ids when relationship and model is defined in API
-const categories = [
-  { id: 1, name: "Sofas and armchairs" },
-  { id: 2, name: "Decoration" },
-  { id: 3, name: "Tables and desk" },
-  { id: 4, name: "Kitchen furniture" },
-  { id: 5, name: "Bedroom" },
-  { id: 6, name: "Outdoors" },
-];
-
 const currency = [{ id: "USD", name: "USD" }];
 
 const schema = yup
@@ -43,8 +33,23 @@ const schema = yup
 function UpdateProduct() {
   const params = useParams();
   const [product, setProduct] = useState(null);
+  const [categories, setCategories] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  const getCategories = async () => {
+    try {
+      const response = await fetchApi({
+        method: "GET",
+        url: `/categories`,
+      });
+      if (response.categories) {
+        setCategories(response.categories);
+      }
+    } catch (error) {
+      setCategories(null);
+    }
+  };
 
   const getProduct = async () => {
     try {
@@ -52,6 +57,8 @@ function UpdateProduct() {
         method: "GET",
         url: `/products/${params.id}`,
       });
+
+      console.log(response);
 
       if (response.status === 404) {
         setError("Product not found");
@@ -72,6 +79,7 @@ function UpdateProduct() {
 
   useEffect(() => {
     getProduct();
+    getCategories();
   }, [params.id]);
 
   const {
@@ -85,14 +93,18 @@ function UpdateProduct() {
   } = useForm({
     resolver: yupResolver(schema),
     mode: "onSubmit",
-    defaulValues: {},
+    defaultValues: {},
   });
 
   useEffect(() => {
-    if (product) {
-      reset(product); // Reset the form with the new product data
+    if (product && categories) {
+      reset({
+        ...product,
+        category: String(product.categoryId),
+      });
+      setValue("currency", product.currency);
     }
-  }, [product, reset]);
+  }, [product, categories, reset, setValue]);
 
   const onSubmit = async (data) => {
     try {
@@ -107,10 +119,11 @@ function UpdateProduct() {
       formData.append("currency", data.currency);
       formData.append("featured", data.featured);
 
-      // Append each selected image to formData
-      Array.from(images).forEach((image) => {
-        formData.append("image", image);
-      });
+      if (data.image && data.image.length > 0) {
+        Array.from(data.image).forEach((image) => {
+          formData.append("image", image);
+        });
+      }
 
       const response = await fetchApi({
         method: "patch",
