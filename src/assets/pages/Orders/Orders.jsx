@@ -144,8 +144,9 @@ function Orders() {
                     <Link
                       to={`/admin/orders/${order.id}`}
                       className="text-dark"
+                      title="See details"
                     >
-                      <i className="bi bi-card-list fs-5 "></i>
+                      <i className="bi bi-eye-fill text-primary fs-6 "></i>
                     </Link>
                   </td>
                 </tr>
