@@ -1,23 +1,12 @@
 import "./AddProduct.css";
-import Input from "../../components/commons/Input/Input";
-import InputCheckbox from "../../components/commons/InputCheckbox/InputCheckbox";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import fetchApi from "../../../api/fetchApi";
 import { toast } from "react-toastify";
 import ProductForm from "../../components/ProductForm/ProductForm";
-
-//TODO: Add the right ids when relationship and model is defined in API
-const categories = [
-  { id: 1, name: "Sofas and armchairs" },
-  { id: 2, name: "Decoration" },
-  { id: 3, name: "Tables and desk" },
-  { id: 4, name: "Kitchen furniture" },
-  { id: 5, name: "Bedroom" },
-  { id: 6, name: "Outdoors" },
-];
+import { useEffect, useState } from "react";
 
 const currency = [{ id: "USD", name: "USD" }];
 
@@ -41,6 +30,7 @@ const schema = yup
   .required();
 
 function AddProduct() {
+  const [categories, setCategories] = useState(null);
   const navigate = useNavigate();
 
   const {
@@ -55,6 +45,24 @@ function AddProduct() {
     resolver: yupResolver(schema),
     mode: "onSubmit",
   });
+
+  const getCategories = async () => {
+    try {
+      const response = await fetchApi({
+        method: "GET",
+        url: `/categories`,
+      });
+      if (response.categories) {
+        setCategories(response.categories);
+      }
+    } catch (error) {
+      setCategories(null);
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   const onSubmit = async (data) => {
     try {
