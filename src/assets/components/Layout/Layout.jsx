@@ -16,74 +16,75 @@ const Layout = () => {
     <>
       <div className="layout-container d-flex vh-100">
         <div className="d-none d-md-block sidebar-container">
-          <div className="sidebar bg-dark h-100">
-            <div className="layout-offcanvas-header d-flex align-items-center">
-              <Link to={"/"}>
-                <img src={logo} alt="Home Deluxe" />
-              </Link>
+          <div className="sidebar bg-dark h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div className="layout-offcanvas-header d-flex align-items-center">
+                <Link to={"/"}>
+                  <img src={logo} alt="Home Deluxe" />
+                </Link>
+              </div>
+              <Nav className="flex-column px-2 py-4 gap-2">
+                <Nav.Item>
+                  <NavLink to="/admin" className="nav-link" end>
+                    <i className="bi bi-house-door me-2"></i>Dashboard
+                  </NavLink>
+                </Nav.Item>
+                <Nav.Item>
+                  <NavLink
+                    to="/admin/admin"
+                    className="nav-link"
+                    activeclassname="active"
+                  >
+                    <i className="bi bi-person-gear me-2"></i>Admin
+                  </NavLink>
+                </Nav.Item>
+                <Nav.Item>
+                  <NavLink
+                    to="/admin/users"
+                    className="nav-link"
+                    activeclassname="active"
+                  >
+                    <i className="bi bi-people me-2"></i>Users
+                  </NavLink>
+                </Nav.Item>
+                <Nav.Item>
+                  <NavLink
+                    to="/admin/products"
+                    className="nav-link"
+                    activeclassname="active"
+                  >
+                    <i className="bi bi-bag me-2"></i>Products
+                  </NavLink>
+                </Nav.Item>
+                <Nav.Item>
+                  <NavLink
+                    to="/admin/orders"
+                    className="nav-link"
+                    activeclassname="active"
+                  >
+                    <i className="bi bi-cart me-2"></i>Orders
+                  </NavLink>
+                </Nav.Item>
+                <Nav.Item>
+                  <NavLink
+                    to="/admin/categories"
+                    className="nav-link"
+                    activeclassname="active"
+                  >
+                    <i className="bi bi-tag me-2"></i>Categories
+                  </NavLink>
+                </Nav.Item>
+              </Nav>
             </div>
-            <Nav className="flex-column px-2 py-4 gap-2">
-              <Nav.Item>
-                <NavLink to="/admin" className="nav-link" end>
-                  <i className="bi bi-house-door me-2"></i>Dashboard
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item>
-                <NavLink
-                  to="/admin/admin"
-                  className="nav-link"
-                  activeclassname="active"
-                >
-                  <i className="bi bi-person-gear me-2"></i>Admin
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item>
-                <NavLink
-                  to="/admin/users"
-                  className="nav-link"
-                  activeclassname="active"
-                >
-                  <i className="bi bi-people me-2"></i>Users
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item>
-                <NavLink
-                  to="/admin/products"
-                  className="nav-link"
-                  activeclassname="active"
-                >
-                  <i className="bi bi-bag me-2"></i>Products
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item>
-                <NavLink
-                  to="/admin/orders"
-                  className="nav-link"
-                  activeclassname="active"
-                >
-                  <i className="bi bi-cart me-2"></i>Orders
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item>
-                <NavLink
-                  to="/admin/categories"
-                  className="nav-link"
-                  activeclassname="active"
-                >
-                  <i className="bi bi-tag me-2"></i>Categories
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item className="mt-4 border-top border-secondary">
-                <a
-                  href={`${import.meta.env.VITE_FRONT_URL}`}
-                  className="nav-link mt-4"
-                  activeclassname="active"
-                >
-                  <i className="bi bi-arrow-return-left me-2"></i>
-                  Return to home
-                </a>
-              </Nav.Item>
-            </Nav>
+            <div className=" px-2 mb-3">
+              <a
+                href={`${import.meta.env.VITE_FRONT_URL}`}
+                className="nav-link py-2 px-3"
+              >
+                <i className="bi bi-arrow-return-left me-2"></i>
+                Return to home
+              </a>
+            </div>
           </div>
         </div>
 
@@ -167,69 +168,71 @@ const Layout = () => {
               <img src={logo} alt="Home Deluxe" />
             </Link>
           </Offcanvas.Header>
-          <Offcanvas.Body>
-            <Nav className="flex-column px-2 py-4 gap-2">
-              <Nav.Item>
-                <NavLink to="/admin" className="nav-link" end>
-                  <i className="bi bi-house-door me-2"></i>Dashboard
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item>
-                <NavLink
-                  to="/admin/admin"
-                  className="nav-link"
-                  activeclassname="active"
-                >
-                  <i className="bi bi-person-gear me-2"></i>Admin
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item>
-                <NavLink
-                  to="/admin/users"
-                  className="nav-link"
-                  activeclassname="active"
-                >
-                  <i className="bi bi-people me-2"></i>Users
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item>
-                <NavLink
-                  to="/admin/products"
-                  className="nav-link"
-                  activeclassname="active"
-                >
-                  <i className="bi bi-bag me-2"></i>Products
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item>
-                <NavLink
-                  to="/admin/orders"
-                  className="nav-link"
-                  activeclassname="active"
-                >
-                  <i className="bi bi-cart me-2"></i>Orders
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item>
-                <NavLink
-                  to="/admin/categories"
-                  className="nav-link"
-                  activeclassname="active"
-                >
-                  <i className="bi bi-tag me-2"></i>Categories
-                </NavLink>
-              </Nav.Item>
-              <Nav.Item className="mt-4 border-top border-secondary">
-                <a
-                  href={`${import.meta.env.VITE_FRONT_URL}`}
-                  className="nav-link mt-4"
-                  activeclassname="active"
-                >
-                  <i className="bi bi-arrow-return-left me-2"></i>
-                  Return to home
-                </a>
-              </Nav.Item>
-            </Nav>
+          <Offcanvas.Body className="d-flex flex-column justify-content-between">
+            <div>
+              {" "}
+              <Nav className="flex-column px-2 py-4 gap-2">
+                <Nav.Item>
+                  <NavLink to="/admin" className="nav-link" end>
+                    <i className="bi bi-house-door me-2"></i>Dashboard
+                  </NavLink>
+                </Nav.Item>
+                <Nav.Item>
+                  <NavLink
+                    to="/admin/admin"
+                    className="nav-link"
+                    activeclassname="active"
+                  >
+                    <i className="bi bi-person-gear me-2"></i>Admin
+                  </NavLink>
+                </Nav.Item>
+                <Nav.Item>
+                  <NavLink
+                    to="/admin/users"
+                    className="nav-link"
+                    activeclassname="active"
+                  >
+                    <i className="bi bi-people me-2"></i>Users
+                  </NavLink>
+                </Nav.Item>
+                <Nav.Item>
+                  <NavLink
+                    to="/admin/products"
+                    className="nav-link"
+                    activeclassname="active"
+                  >
+                    <i className="bi bi-bag me-2"></i>Products
+                  </NavLink>
+                </Nav.Item>
+                <Nav.Item>
+                  <NavLink
+                    to="/admin/orders"
+                    className="nav-link"
+                    activeclassname="active"
+                  >
+                    <i className="bi bi-cart me-2"></i>Orders
+                  </NavLink>
+                </Nav.Item>
+                <Nav.Item>
+                  <NavLink
+                    to="/admin/categories"
+                    className="nav-link"
+                    activeclassname="active"
+                  >
+                    <i className="bi bi-tag me-2"></i>Categories
+                  </NavLink>
+                </Nav.Item>
+              </Nav>
+            </div>
+            <div className=" px-2 mb-3">
+              <a
+                href={`${import.meta.env.VITE_FRONT_URL}`}
+                className="nav-link py-2 px-3"
+              >
+                <i className="bi bi-arrow-return-left me-2"></i>
+                Return to home
+              </a>
+            </div>
           </Offcanvas.Body>
         </Offcanvas>
       </div>
