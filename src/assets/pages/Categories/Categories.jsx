@@ -1,54 +1,65 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./Categories.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RemoveModal from "../../components/Modals/RemoveModal";
 import { toast } from "react-toastify";
-
-const categories = [
-  { id: 1, name: "Sofas and armchairs" },
-  { id: 2, name: "Decoration" },
-  { id: 3, name: "Tables and desk" },
-  { id: 4, name: "Kitchen furniture" },
-  { id: 5, name: "Bedroom" },
-  { id: 6, name: "Outdoors" },
-];
+import fetchApi from "../../../api/fetchApi";
 
 function Categories() {
-  // const [selectedCategory, setSelectedCategory] = useState();
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const params = useParams();
 
-  // const [showRemove, setShowRemove] = useState(false);
-  // const handleCloseRemove = () => setShowRemove(false);
-  // const handleShowRemove = (category) => {
-  //   setSelectedCategory(category);
-  //   setShowRemove(true);
-  // };
+  const [showRemove, setShowRemove] = useState(false);
+  const handleCloseRemove = () => setShowRemove(false);
+  const handleShowRemove = (category) => {
+    setSelectedCategory(category);
+    setShowRemove(true);
+  };
 
-  // const handleRemoveCategory = (categoryId) => {
-  //   toast.warning("Sorry this feature is not available yet");
-  //   handleCloseRemove();
-  // };
+  const handleRemoveCategory = async (categoryId) => {
+    try {
+      await fetchApi({
+        method: "delete",
+        url: `/categories/${categoryId}`,
+      });
+      getCategories();
+      handleCloseRemove();
+    } catch (error) {
+      toast.error("Something went wrong, please try again");
+    }
+  };
+
+  const getCategories = async () => {
+    try {
+      const response = await fetchApi({
+        method: "GET",
+        url: `/categories`,
+      });
+      if (response.categories) {
+        setCategories(response.categories);
+      }
+    } catch (error) {
+      setCategories([]);
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   return (
     <div className="categories-container container-fluid">
       <div className="categories-header d-flex justify-content-between align-items-center mb-3">
         <span className="fs-5 text-uppercase fw-semibold">Categories</span>
-        {/* <Link
+        <Link
           to={"/admin/categories/create"}
           className="btn btn-dark table-text fw-semibold"
         >
           New Category
-        </Link> */}
-
-        <button
-          className="btn btn-dark table-text fw-semibold"
-          onClick={() =>
-            toast.warning("Sorry this feature is not available yet.")
-          }
-        >
-          New Category
-        </button>
+        </Link>
       </div>
       <table className="table table-hover text-center align-middle dashboard-table rounded rounded-3 overflow-hidden shadow-sm table-text">
         <thead className="table-header table-dark">
@@ -61,44 +72,34 @@ function Categories() {
           </tr>
         </thead>
         <tbody>
-          {categories.map((category) => (
-            <tr key={category.id}>
-              <td>{category.id}</td>
-              <td className="text-start">{category.name} </td>
-              <td>
-                <div className="d-flex justify-content-center gap-3 align-items-center categories-actions">
-                  <i
-                    className="bi bi-pencil-square fs-6 edit-icon text-primary"
-                    onClick={() =>
-                      toast.warning("Sorry this feature is not available yet.")
-                    }
-                  ></i>
-                  {/* <Link to={`/admin/category/${category.id}`}>
-                    <i className="bi bi-pencil-square fs-6 edit-icon text-primary"></i>
-                  </Link> */}
-                  <i
-                    className="bi bi-trash3-fill fs-6 delete-icon text-danger"
-                    onClick={() =>
-                      toast.warning("Sorry this feature is not available yet.")
-                    }
-                    // onClick={() => handleShowRemove(category)}
-                  ></i>
-                  {/* {selectedCategory && (
-                    <RemoveModal
-                      show={showRemove}
-                      handleClose={handleCloseRemove}
-                      item={selectedCategory.name}
-                      handleOnClick={() =>
-                        handleRemoveCategory(selectedCategory.id)
-                      }
-                    />
-                  )} */}
-                </div>
-              </td>
-            </tr>
-          ))}
+          {categories.length > 0 &&
+            categories.map((category) => (
+              <tr key={category.id}>
+                <td>{category.id}</td>
+                <td className="text-start">{category.name} </td>
+                <td>
+                  <div className="d-flex justify-content-center gap-3 align-items-center categories-actions">
+                    <Link to={`/admin/categories/${category.id}`}>
+                      <i className="bi bi-pencil-square fs-6 edit-icon text-primary"></i>
+                    </Link>
+                    <i
+                      className="bi bi-trash3-fill fs-6 delete-icon text-danger"
+                      onClick={() => handleShowRemove(category)}
+                    ></i>
+                  </div>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
+      {selectedCategory && (
+        <RemoveModal
+          show={showRemove}
+          handleClose={handleCloseRemove}
+          item={selectedCategory.name}
+          handleOnClick={() => handleRemoveCategory(selectedCategory.id)}
+        />
+      )}
     </div>
   );
 }
