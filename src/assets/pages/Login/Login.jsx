@@ -46,6 +46,8 @@ function Login() {
     resolver: yupResolver(schema),
     mode: "onSubmit",
     defaultValues: {
+      email: "admin@homedeluxe.com",
+      password: "password123",
       rememberMe: false,
     },
   });
