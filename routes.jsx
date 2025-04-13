@@ -15,6 +15,8 @@ import UpdateAdmin from "./src/assets/pages/UpdateAdmin/UpdateAdmin";
 import OrderDetails from "./src/assets/pages/OrderDetails/OrderDetails";
 import Login from "./src/assets/pages/Login/Login";
 import Logout from "./src/assets/pages/Logout/Logout";
+import AddCategory from "./src/assets/pages/AddCategory/AddCategory";
+import UpdateCategory from "./src/assets/pages/UpdateCategory/UpdateCategory";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,8 @@ const router = createBrowserRouter([
       { path: "orders", element: <Orders /> },
       { path: "orders/:id", element: <OrderDetails /> },
       { path: "categories", element: <Categories /> },
+      { path: "categories/create", element: <AddCategory /> },
+      { path: "categories/:id", element: <UpdateCategory /> },
     ],
   },
 
