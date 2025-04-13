@@ -65,11 +65,12 @@ function ProductForm({
             {...register("category")}
           >
             <option value="">Choose a category</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.name}>
-                {category.name}
-              </option>
-            ))}
+            {categories &&
+              categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
           </select>
         </div>
         <div className="my-3">
