@@ -26,7 +26,7 @@ function Products() {
   const getProducts = async () => {
     try {
       const data = await fetchApi({ method: "get", url: "/products" });
-      setProducts(data);
+      setProducts(data.products);
     } catch (err) {
       setError(err.message);
       toast.error("Failed to load products.");
