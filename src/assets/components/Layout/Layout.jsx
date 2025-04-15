@@ -119,10 +119,10 @@ const Layout = () => {
                 >
                   <img
                     src={
-                      user.image && user.image.includes("http")
-                        ? user.image
-                        : user.image
-                        ? `${import.meta.env.VITE_SUPABASE_URL}/${user.image}`
+                      user.avatar && user.avatar.includes("http")
+                        ? user.avatar
+                        : user.avatar
+                        ? `${import.meta.env.VITE_SUPABASE_URL}/${user.avatar}`
                         : "/img/avatar.png"
                     }
                     alt="User Avatar"
