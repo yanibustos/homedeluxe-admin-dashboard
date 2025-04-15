@@ -1,23 +1,42 @@
+.chart-container {
+  height: 600px;
+  overflow: hidden;
+}
+
+@media (max-width: 992px) {
+  .chart-container {
+    height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .chart-container {
+    height: 250px;
+    padding: 1rem !important;
+  }
+}
+
+.dashboard-container .chart-container canvas {
+  height: 100% !important;
+  width: 100% !important;
+  max-height: 100%;
+  max-width: 100%;
+}
+
 .dashboard-container {
-  .card-lift {
-    border-radius: 0.5rem;
-    transition: all 0.4s;
-  }
-
-  .card-lift:hover {
-    box-shadow: 0 5px 10px rgba(30, 32, 37, 0.12);
-    transform: translateY(-0.3rem);
-  }
-
   a {
-    text-decoration: none;
-    font-weight: 600;
-    color: #a193ff;
+    font-weight: 600 !important;
+    color: #a193ff !important;
   }
 
   a:hover {
-    text-decoration: none;
-    font-weight: 600;
-    color: #b4a9ff;
+    font-weight: 600 !important;
+    color: #b4a9ff !important;
   }
 }
