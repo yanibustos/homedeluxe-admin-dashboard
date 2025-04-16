@@ -18,6 +18,18 @@ function CategoryForm({ register, errors, onSubmit, handleSubmit }) {
             errors={errors}
           />
         </div>
+        <div className="my-3">
+          <label htmlFor="image" className="fw-semibold category-label mb-2">
+            Image
+          </label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            className="form-control"
+            {...register("image")}
+          />
+        </div>
 
         <div className="my-4">
           <Link to={"/admin/categories"} className="btn btn-secondary me-3">
