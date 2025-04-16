@@ -103,14 +103,7 @@ const Layout = () => {
                 &#9776;
               </Button>
             </div>
-            <div className="d-flex flex-grow-1 justify-content-between align-items-center container-fluid">
-              <Navbar.Brand
-                as={Link}
-                to={"/admin"}
-                className="text-uppercase layout-nav-title"
-              >
-                Administration Panel
-              </Navbar.Brand>
+            <div className="d-flex flex-grow-1 justify-content-end align-items-center container-fluid">
               <Dropdown align="end">
                 <Dropdown.Toggle
                   variant="link"
