@@ -6,11 +6,33 @@ import fetchApi from "../../../api/fetchApi";
 import { formatDate } from "../../helpers/formatDate";
 import { toast } from "react-toastify";
 import { calculateOrderTotal } from "../../helpers/calculateOrderTotal";
+import Select from "react-select";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const options = [
+    { value: "pending", label: "Pending", color: "#aeb2b6" },
+    { value: "paid", label: "Paid", color: "#198754" },
+    { value: "processing", label: "Processing", color: "#ffc107" },
+    { value: "shipped", label: "Shipped", color: "#0dcaf0" },
+    { value: "canceled", label: "Canceled", color: "#dc3545" },
+  ];
+
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      color: state.data.color,
+      fontWeight: state.isSelected ? "700" : "400",
+    }),
+    singleValue: (provided, state) => ({
+      ...provided,
+      color: state.data.color,
+      fontWeight: "700",
+    }),
+  };
 
   useEffect(() => {
     getOrders();
@@ -91,7 +113,7 @@ function Orders() {
             <th scope="col">Customer</th>
             <th scope="col">Products</th>
             <th scope="col">Total Amount</th>
-            <th scope="col">Payment method</th>
+            <th scope="col">Payment Method</th>
             <th scope="col">Status</th>
             <th scope="col">Actions</th>
           </tr>
@@ -123,22 +145,16 @@ function Orders() {
                     {order.paymentMethod}
                   </td>
                   <td className="align-content-center">
-                    <select
+                    <Select
                       name="status"
                       id="status"
-                      className="form-select"
-                      value={order.status}
-                      onChange={(e) =>
-                        handleStatusChange(order.id, e.target.value)
+                      value={options.find((opt) => opt.value === order.status)}
+                      onChange={(selectedOption) =>
+                        handleStatusChange(order.id, selectedOption.value)
                       }
-                    >
-                      <option value="">Choose a status</option>
-                      <option value="pending">Pending</option>
-                      <option value="paid">Paid</option>
-                      <option value="processing">Processing</option>
-                      <option value="shipped">Shipped</option>
-                      <option value="canceled">Canceled</option>
-                    </select>
+                      options={options}
+                      styles={customStyles}
+                    />
                   </td>
                   <td className="align-content-center orders-actions">
                     <Link
