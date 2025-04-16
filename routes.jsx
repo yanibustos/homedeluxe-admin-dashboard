@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import ProtectedRoute from "./src/assets/components/ProtectedRoute/ProtectedRoute";
 import Dashboard from "./src/assets/pages/Dashboard/Dashboard";
 import Layout from "./src/assets/components/Layout/Layout";
@@ -19,6 +19,8 @@ import AddCategory from "./src/assets/pages/AddCategory/AddCategory";
 import UpdateCategory from "./src/assets/pages/UpdateCategory/UpdateCategory";
 
 const router = createBrowserRouter([
+  { path: "/", element: <Navigate to={"/admin"} /> },
+
   {
     path: "/admin/login",
     element: <Login />,
