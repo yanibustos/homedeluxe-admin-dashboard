@@ -61,7 +61,7 @@ function OrderDetails() {
           <div className="row p-3 card d-flex flex-row">
             <div className="col-12 col-md-3">
               <ul className="list-unstyled">
-                <li>Order ID:</li>
+                <li>Order Id:</li>
                 <li>Customer:</li>
                 <li>Date:</li>
                 <li>Status:</li>
