@@ -28,12 +28,21 @@ function AddCategory() {
     mode: "onSubmit",
   });
 
-  const onSubmit = async ({ name }) => {
+  const onSubmit = async ({ name, image }) => {
     try {
+      const formData = new FormData();
+      formData.append("name", name);
+      if (image && image[0]) {
+        formData.append("image", image[0]);
+      }
+
       const response = await fetchApi({
         method: "POST",
         url: "/categories",
-        data: { name },
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
 
       if (response.category) {
