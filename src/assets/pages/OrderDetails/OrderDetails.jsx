@@ -5,12 +5,34 @@ import { toast } from "react-toastify";
 import fetchApi from "../../../api/fetchApi";
 import { formatDate } from "../../helpers/formatDate";
 import { calculateOrderTotal } from "../../helpers/calculateOrderTotal";
+import Select from "react-select";
 
 function OrderDetails() {
   const [order, setOrder] = useState();
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
   const params = useParams();
+
+  const options = [
+    { value: "pending", label: "Pending", color: "#aeb2b6" },
+    { value: "paid", label: "Paid", color: "#198754" },
+    { value: "processing", label: "Processing", color: "#ffc107" },
+    { value: "shipped", label: "Shipped", color: "#0dcaf0" },
+    { value: "canceled", label: "Canceled", color: "#dc3545" },
+  ];
+
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      color: state.data.color,
+      fontWeight: state.isSelected ? "700" : "400",
+    }),
+    singleValue: (provided, state) => ({
+      ...provided,
+      color: state.data.color,
+      fontWeight: "700",
+    }),
+  };
 
   useEffect(() => {
     getOrder();
@@ -75,23 +97,16 @@ function OrderDetails() {
                 </li>
                 <li>{formatDate(order.createdAt)}</li>
                 <li>
-                  <select
+                  <Select
                     name="status"
                     id="status"
-                    className="form-select"
-                    value={order?.status || ""}
-                    onChange={(e) =>
-                      handleStatusChange(order.id, e.target.value)
+                    value={options.find((opt) => opt.value === order.status)}
+                    onChange={(selectedOption) =>
+                      handleStatusChange(order.id, selectedOption.value)
                     }
-                  >
-                    <option value="">Choose a status</option>
-                    <option value="paid">Paid</option>
-                    <option value="shipped">Shipped</option>
-                    <option value="confirmed">Confirmed</option>
-                    <option value="delivered">Delivered</option>
-                    <option value="canceled">Canceled</option>
-                    <option value="pending">Pending</option>
-                  </select>
+                    options={options}
+                    styles={customStyles}
+                  />
                 </li>
               </ul>
             </div>
@@ -100,7 +115,7 @@ function OrderDetails() {
                 <li>Email:</li>
                 <li>Shipping Address:</li>
                 <li>Total Amount:</li>
-                <li>Payment method:</li>
+                <li>Payment Method:</li>
               </ul>
             </div>
             <div className="col-12 col-md-3">
