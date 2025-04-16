@@ -134,22 +134,21 @@ const Layout = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu align="end">
-                  <Dropdown.Item eventKey="1">
-                    <Link
-                      to={`/admin/admin/${user.id}`}
-                      className="text-decoration-none text-dark"
-                    >
-                      My Profile
-                    </Link>
+                  <Dropdown.Item
+                    eventKey="1"
+                    as={Link}
+                    to={`/admin/admin/${user.id}`}
+                    className="text-decoration-none text-dark"
+                  >
+                    My Profile
                   </Dropdown.Item>
-                  <Dropdown.Item eventKey="2">
-                    {" "}
-                    <Link
-                      to={"/admin/logout"}
-                      className="text-decoration-none text-dark"
-                    >
-                      Logout
-                    </Link>
+                  <Dropdown.Item
+                    eventKey="2"
+                    as={Link}
+                    to={"/admin/logout"}
+                    className="text-decoration-none text-dark"
+                  >
+                    Logout
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
