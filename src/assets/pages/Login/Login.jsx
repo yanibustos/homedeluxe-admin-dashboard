@@ -90,7 +90,7 @@ function Login() {
 
   return (
     <SideImage>
-      <div className="login-container">
+      <div className="login-container d-flex flex-column">
         <form
           action=""
           onSubmit={handleSubmit(onSubmit)}
@@ -128,10 +128,10 @@ function Login() {
                 register={register("rememberMe")}
               />
             </div>
-            <div className="text-end">
+            <div className="text-end d-flex align-items-center ">
               <button
                 type="button"
-                className="btn btn-link text-dark fw-semibold login-text p-0 text-decoration-none"
+                className="btn btn-link text-white fw-semibold login-text p-0 text-decoration-none"
                 onClick={() => setShowForgotPassword(true)}
               >
                 Forgot your password?
