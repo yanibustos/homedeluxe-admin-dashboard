@@ -8,10 +8,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Loading from "../../components/Loading/Loading";
+import { useSelector } from "react-redux";
 
 const schema = yup.object({}).required();
 
 function UpdateCategory() {
+  const user = useSelector((state) => state.user);
   const params = useParams();
   const [error, setError] = useState(null);
   const [category, setCategory] = useState(null);
@@ -78,6 +80,7 @@ function UpdateCategory() {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        accessToken: user.accessToken,
       });
 
       if (category) {

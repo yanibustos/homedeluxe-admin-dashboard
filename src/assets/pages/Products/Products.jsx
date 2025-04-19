@@ -5,8 +5,10 @@ import { toast } from "react-toastify";
 import fetchApi from "../../../api/fetchApi";
 import { Link } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
+import { useSelector } from "react-redux";
 
 function Products() {
+  const user = useSelector((state) => state.user);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -40,6 +42,7 @@ function Products() {
       const data = await fetchApi({
         method: "delete",
         url: `/products/${productId}`,
+        accessToken: user.accessToken,
       });
       getProducts();
       handleCloseRemove();

@@ -6,6 +6,7 @@ import * as yup from "yup";
 import fetchApi from "../../../api/fetchApi";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const schema = yup
   .object({
@@ -14,6 +15,7 @@ const schema = yup
   .required();
 
 function AddCategory() {
+  const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const {
     register,
@@ -43,6 +45,7 @@ function AddCategory() {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        accessToken: user.accessToken,
       });
 
       if (response.category) {

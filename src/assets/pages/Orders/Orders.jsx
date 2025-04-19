@@ -7,8 +7,10 @@ import { formatDate } from "../../helpers/formatDate";
 import { toast } from "react-toastify";
 import { calculateOrderTotal } from "../../helpers/calculateOrderTotal";
 import Select from "react-select";
+import { useSelector } from "react-redux";
 
 function Orders() {
+  const user = useSelector((state) => state.user);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -41,7 +43,11 @@ function Orders() {
   const getOrders = async () => {
     setLoading(true);
     try {
-      const data = await fetchApi({ method: "get", url: "/orders" });
+      const data = await fetchApi({
+        method: "get",
+        url: "/orders",
+        accessToken: user.accessToken,
+      });
       setOrders(data);
     } catch (err) {
       setError(err.message);
@@ -62,6 +68,7 @@ function Orders() {
         method: "patch",
         url: `/orders/${orderId}/status`,
         data: { status: newStatus },
+        accessToken: user.accessToken,
       });
 
       toast.success("Status updated successfully.");

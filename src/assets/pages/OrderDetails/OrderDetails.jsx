@@ -6,8 +6,10 @@ import fetchApi from "../../../api/fetchApi";
 import { formatDate } from "../../helpers/formatDate";
 import { calculateOrderTotal } from "../../helpers/calculateOrderTotal";
 import Select from "react-select";
+import { useSelector } from "react-redux";
 
 function OrderDetails() {
+  const user = useSelector((state) => state.user);
   const [order, setOrder] = useState();
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
@@ -62,6 +64,7 @@ function OrderDetails() {
         method: "patch",
         url: `/orders/${orderId}/status`,
         data: { status: newStatus },
+        accessToken: user.accessToken,
       });
 
       toast.success("Status updated successfully.");

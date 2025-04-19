@@ -4,8 +4,10 @@ import fetchApi from "../../../api/fetchApi";
 import { toast } from "react-toastify";
 import Loading from "../../components/Loading/Loading";
 import RemoveModal from "../../components/Modals/RemoveModal";
+import { useSelector } from "react-redux";
 
 function Users() {
+  const user = useSelector((state) => state.user);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,7 +22,11 @@ function Users() {
 
   const handleRemoveUser = async (userId) => {
     try {
-      await fetchApi({ method: "delete", url: `/users/${userId}` });
+      await fetchApi({
+        method: "delete",
+        url: `/users/${userId}`,
+        accessToken: user.accessToken,
+      });
       toast.success("User deleted successfully.");
       getUsers();
     } catch (err) {
@@ -39,6 +45,7 @@ function Users() {
       const response = await fetchApi({
         method: "get",
         url: "/users",
+        accessToken: user.accessToken,
       });
 
       if (response && response.users) {

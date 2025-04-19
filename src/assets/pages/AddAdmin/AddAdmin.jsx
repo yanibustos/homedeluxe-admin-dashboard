@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import * as yup from "yup";
 import AdminForm from "../../components/AdminForm/AdminForm";
 import fetchApi from "../../../api/fetchApi";
+import { useSelector } from "react-redux";
 
 const schema = yup
   .object({
@@ -24,6 +25,7 @@ const schema = yup
   .required();
 
 function AddAdmin() {
+  const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const {
     register,
@@ -37,12 +39,13 @@ function AddAdmin() {
 
   const onSubmit = async (data) => {
     try {
-      const user = await fetchApi({
+      const newUser = await fetchApi({
         method: "post",
         url: "/admin",
         data: data,
+        accessToken: user.accessToken,
       });
-      if (user) {
+      if (newUser) {
         toast.success(
           "Account created successfully, redirecting to Admin view"
         );

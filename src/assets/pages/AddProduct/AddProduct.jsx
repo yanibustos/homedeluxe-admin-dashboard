@@ -7,6 +7,7 @@ import fetchApi from "../../../api/fetchApi";
 import { toast } from "react-toastify";
 import ProductForm from "../../components/ProductForm/ProductForm";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const currency = [{ id: "USD", name: "USD" }];
 
@@ -30,6 +31,7 @@ const schema = yup
   .required();
 
 function AddProduct() {
+  const user = useSelector((state) => state.user);
   const [categories, setCategories] = useState(null);
   const navigate = useNavigate();
 
@@ -88,6 +90,7 @@ function AddProduct() {
         method: "POST",
         url: "/products",
         data: formData,
+        accessToken: user.accessToken,
       });
 
       if (response) {

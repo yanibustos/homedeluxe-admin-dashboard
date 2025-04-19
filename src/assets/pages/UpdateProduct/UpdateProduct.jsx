@@ -130,6 +130,7 @@ function UpdateProduct() {
         url: `/products/${params.id}`,
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
+        accessToken: user.accessToken,
       });
 
       if (response) {

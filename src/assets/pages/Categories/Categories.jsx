@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import RemoveModal from "../../components/Modals/RemoveModal";
 import { toast } from "react-toastify";
 import fetchApi from "../../../api/fetchApi";
+import { useSelector } from "react-redux";
 
 function Categories() {
+  const user = useSelector((state) => state.user);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState();
   const [loading, setLoading] = useState(true);
@@ -24,6 +26,7 @@ function Categories() {
       await fetchApi({
         method: "delete",
         url: `/categories/${categoryId}`,
+        accessToken: user.accessToken,
       });
       getCategories();
       handleCloseRemove();

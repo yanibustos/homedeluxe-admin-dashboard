@@ -5,8 +5,10 @@ import RemoveModal from "../../components/Modals/RemoveModal";
 import Loading from "../../components/Loading/Loading";
 import { toast } from "react-toastify";
 import fetchApi from "../../../api/fetchApi";
+import { useSelector } from "react-redux";
 
 function Admin() {
+  const user = useSelector((state) => state.user);
   const [admins, setAdmins] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,7 +23,11 @@ function Admin() {
 
   const handleRemoveUser = async (userId) => {
     try {
-      await fetchApi({ method: "delete", url: `/admin/${userId}` });
+      await fetchApi({
+        method: "delete",
+        url: `/admin/${userId}`,
+        accessToken: user.accessToken,
+      });
       toast.success("User deleted successfully.");
       getAdmins();
     } catch (err) {
@@ -40,6 +46,7 @@ function Admin() {
       const response = await fetchApi({
         method: "get",
         url: "/admin",
+        accessToken: user.accessToken,
       });
 
       if (response && response.admins) {
