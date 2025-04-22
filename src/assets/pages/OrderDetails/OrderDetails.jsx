@@ -46,6 +46,7 @@ function OrderDetails() {
       const data = await fetchApi({
         method: "get",
         url: `/orders/${params.id}`,
+        accessToken: user.accessToken,
       });
       setOrder(data.order);
     } catch (err) {
